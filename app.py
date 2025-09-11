@@ -573,6 +573,8 @@ def handle_requests():
     except Exception as e:
         app.logger.error(f"Error processing request: {e}")
         return jsonify({"error": str(e), "status": 0}), 500
+import os
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Render provides PORT
+    app.run(host="0.0.0.0", port=port)
